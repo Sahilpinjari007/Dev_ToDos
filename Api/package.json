@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon App.js",
-    "run": "node App.js"
+    "run": "node App.js",
+    "build": "npm i"
   },
   "author": "Sahil Pinjari",
   "license": "ISC",
