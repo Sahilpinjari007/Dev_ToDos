@@ -11,6 +11,8 @@ function App() {
   const [updateKey, setUpdateKey] = useState("");
   const BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
 
+  console.log(BASE_URL);
+
   const getData = () => {
     var requestOptions = {
       method: "GET",
