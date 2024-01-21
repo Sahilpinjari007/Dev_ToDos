@@ -11,17 +11,13 @@ function App() {
   const [updateKey, setUpdateKey] = useState("");
   const BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
 
-  useEffect(() => {
-    getData();
-  }, []);
-
   const getData = () => {
     var requestOptions = {
       method: "GET",
       redirect: "follow",
     };
 
-    fetch(BASE_URL+"todos", requestOptions)
+    fetch(process.env.REACT_APP_SERVER_BASE_URL+"todos", requestOptions)
       .then((response) => response.json())
       .then((result) => setTodos(result))
       .catch((error) => console.log("error", error));
@@ -33,7 +29,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch(BASE_URL+"todos/complete/" + key, requestOptions)
+    fetch(process.env.REACT_APP_SERVER_BASE_URL+"todos/complete/" + key, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         setTodos(
@@ -55,7 +51,7 @@ function App() {
       redirect: "follow",
     };
 
-    fetch(BASE_URL+"todos/delete/" + key, requestOptions)
+    fetch(process.env.REACT_APP_SERVER_BASE_URL+"todos/delete/" + key, requestOptions)
       .then((response) => response.text())
       .then((result) => getData())
       .catch((error) => console.log("error", error));
@@ -77,7 +73,7 @@ function App() {
         redirect: "follow",
       };
 
-      fetch(BASE_URL+"todos/new", requestOptions)
+      fetch(process.env.REACT_APP_SERVER_BASE_URL+"todos/new", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           setPopupActive(!popupActive);
@@ -111,7 +107,7 @@ function App() {
         redirect: "follow",
       };
 
-      fetch(BASE_URL+"todos/update/" + updateKey, requestOptions)
+      fetch(process.env.REACT_APP_SERVER_BASE_URL+"todos/update/" + updateKey, requestOptions)
         .then((response) => response.text())
         .then((result) => {
           getData();
@@ -122,6 +118,10 @@ function App() {
       alert("Please Enter Todo....");
     }
   };
+
+  useEffect(() => {
+    getData();
+  }, [BASE_URL]);
 
   return (
     <div className="App">
